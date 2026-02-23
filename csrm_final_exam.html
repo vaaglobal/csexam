@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSRM Final Examination — VAA Global</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --deep-blue: #0d2240;
+    --mid-blue: #1a3a6e;
+    --accent-gold: #f5a623;
+    --accent-orange: #e8650a;
+    --soft-white: #f8f4ee;
+    --cream: #fdf6ec;
+    --text-dark: #1a1a2e;
+    --text-body: #2d3748;
+    --border: rgba(245,166,35,0.25);
+    --card-bg: #ffffff;
+    --section-bg: #f9f5ef;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-body);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(26,58,110,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(232,101,10,0.15) 0%, transparent 50%),
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.02) 60px, rgba(255,255,255,0.02) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.02) 60px, rgba(255,255,255,0.02) 61px);
+    padding: 80px 40px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(245,166,35,0.15);
+    animation: pulse 6s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(245,166,35,0.08);
+    animation: pulse 8s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.6; }
+  }
+
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.4);
+    color: var(--accent-gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 span {
+    color: var(--accent-gold);
+    display: block;
+  }
+
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── NAV TABS ── */
+  .nav-wrap {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+
+  .nav-tabs {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    padding: 0 40px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.45);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 18px 20px 16px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,0.75); }
+  .tab-btn.active {
+    color: var(--accent-gold);
+    border-bottom-color: var(--accent-gold);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  /* ── SECTION PANELS ── */
+  .section-panel { display: none; }
+  .section-panel.active { display: block; animation: fadeIn 0.4s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    margin-bottom: 48px;
+  }
+
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-orange);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .section-desc {
+    color: #5a6a80;
+    font-size: 0.95rem;
+    max-width: 620px;
+    border-left: 3px solid var(--accent-gold);
+    padding-left: 18px;
+  }
+
+  /* ── INSTRUCTIONS BOX ── */
+  .instructions {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .instructions::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-gold), var(--accent-orange));
+  }
+  .instructions h3 {
+    color: var(--accent-gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 14px;
+  }
+  .instructions ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 32px;
+  }
+  .instructions li {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .instructions li::before {
+    content: '→';
+    color: var(--accent-gold);
+    font-weight: bold;
+  }
+
+  /* ── ESSAY QUESTIONS ── */
+  .essay-card {
+    background: var(--card-bg);
+    border-radius: 6px;
+    border: 1px solid #e8e0d4;
+    margin-bottom: 28px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .essay-card:hover {
+    box-shadow: 0 8px 32px rgba(10,22,40,0.1);
+    border-color: rgba(245,166,35,0.4);
+  }
+
+  .essay-card-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0;
+  }
+
+  .essay-num {
+    background: var(--navy);
+    color: var(--accent-gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    min-width: 64px;
+    height: 100%;
+    padding: 24px 0;
+    text-align: center;
+    flex-shrink: 0;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .essay-content {
+    padding: 24px 28px;
+    flex: 1;
+  }
+
+  .essay-tag {
+    display: inline-block;
+    background: rgba(232,101,10,0.1);
+    color: var(--accent-orange);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+
+  .essay-company {
+    display: inline-block;
+    background: rgba(10,22,40,0.06);
+    color: var(--navy);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    margin-left: 6px;
+  }
+
+  .essay-q {
+    font-size: 0.97rem;
+    color: var(--text-body);
+    line-height: 1.75;
+  }
+
+  .essay-marks {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: #8a99aa;
+    margin-top: 12px;
+  }
+
+  /* ── MCQ SECTION ── */
+  .mcq-module {
+    margin-bottom: 56px;
+  }
+
+  .module-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e8e0d4;
+  }
+
+  .module-num {
+    background: var(--navy);
+    color: var(--accent-gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+  .module-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .mcq-card {
+    background: var(--card-bg);
+    border-radius: 6px;
+    border: 1px solid #e8e0d4;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .mcq-card:hover {
+    border-color: rgba(245,166,35,0.35);
+    box-shadow: 0 4px 16px rgba(10,22,40,0.08);
+  }
+
+  .mcq-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .mcq-num {
+    background: var(--section-bg);
+    color: var(--mid-blue);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    min-width: 52px;
+    padding: 18px 0;
+    text-align: center;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #e8e0d4;
+  }
+
+  .mcq-body {
+    padding: 18px 24px;
+    flex: 1;
+  }
+
+  .mcq-company-tag {
+    display: inline-block;
+    background: rgba(26,58,110,0.07);
+    color: var(--mid-blue);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+
+  .mcq-question {
+    font-size: 0.93rem;
+    color: var(--text-body);
+    line-height: 1.65;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .mcq-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mcq-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--section-bg);
+    border-radius: 4px;
+    border: 1px solid transparent;
+    font-size: 0.85rem;
+    color: var(--text-body);
+    transition: background 0.15s;
+    cursor: default;
+  }
+  .mcq-option:hover {
+    background: rgba(245,166,35,0.08);
+    border-color: rgba(245,166,35,0.3);
+  }
+
+  .opt-letter {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent-orange);
+    min-width: 18px;
+    margin-top: 1px;
+  }
+
+  /* ── OVERVIEW PAGE ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .overview-card {
+    background: var(--card-bg);
+    border: 1px solid #e8e0d4;
+    border-radius: 6px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .overview-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-gold), var(--accent-orange));
+  }
+
+  .ov-icon {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+  }
+
+  .ov-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .ov-desc {
+    font-size: 0.85rem;
+    color: #5a6a80;
+    line-height: 1.6;
+  }
+
+  .module-overview {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 32px;
+    margin-bottom: 40px;
+  }
+
+  .module-overview h3 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  .mod-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mod-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .mod-item-title {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.88rem;
+  }
+
+  .mod-item-count {
+    background: rgba(245,166,35,0.15);
+    color: var(--accent-gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .companies-section {
+    background: var(--section-bg);
+    border-radius: 6px;
+    padding: 28px;
+    border: 1px solid #e8e0d4;
+  }
+
+  .companies-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 18px;
+  }
+
+  .companies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .company-pill {
+    background: var(--card-bg);
+    border: 1px solid #d8d0c8;
+    color: var(--mid-blue);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ── FOOTER ── */
+  .exam-footer {
+    background: var(--navy);
+    padding: 32px 40px;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .exam-footer p {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.82rem;
+  }
+  .exam-footer strong {
+    color: var(--accent-gold);
+  }
+
+  /* ── RESPONSIVE — TABLET ── */
+  @media (max-width: 768px) {
+    .hero { padding: 48px 20px 44px; }
+    .hero::before, .hero::after { display: none; }
+
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 0.93rem; }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .stat {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(245,166,35,0.2);
+      border-radius: 6px;
+      padding: 14px 10px;
+    }
+    .stat-num { font-size: 1.8rem; }
+
+    .nav-tabs { padding: 0 16px; gap: 0; }
+    .tab-btn { padding: 15px 12px; font-size: 0.72rem; letter-spacing: 0.04em; }
+
+    .main { padding: 28px 16px 72px; }
+
+    .section-title { font-size: 1.6rem; }
+
+    /* Overview grid → single column */
+    .overview-grid { grid-template-columns: 1fr; gap: 14px; }
+    .overview-card { padding: 20px; }
+
+    /* Module overview */
+    .module-overview { padding: 22px 18px; }
+    .mod-item { flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 14px; }
+
+    /* Companies pills */
+    .companies-section { padding: 20px 16px; }
+
+    /* Essay cards — stack number on top */
+    .essay-card-head { flex-direction: column; }
+    .essay-num {
+      min-width: unset;
+      width: 100%;
+      height: auto;
+      padding: 10px 20px;
+      align-self: auto;
+      justify-content: flex-start;
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .essay-content { padding: 18px 18px 20px; }
+    .essay-q { font-size: 0.92rem; }
+
+    /* MCQ cards — stack number on top */
+    .mcq-head { flex-direction: column; }
+    .mcq-num {
+      min-width: unset;
+      width: 100%;
+      height: auto;
+      padding: 8px 16px;
+      align-self: auto;
+      justify-content: flex-start;
+      border-right: none;
+      border-bottom: 1px solid #e8e0d4;
+      font-size: 0.75rem;
+    }
+    .mcq-body { padding: 14px 16px 18px; }
+    .mcq-question { font-size: 0.9rem; margin-bottom: 12px; }
+
+    /* MCQ options — single column */
+    .mcq-options { grid-template-columns: 1fr; gap: 7px; }
+    .mcq-option { padding: 10px 12px; font-size: 0.85rem; }
+
+    /* Instructions */
+    .instructions { padding: 20px 18px; }
+    .instructions ul { flex-direction: column; gap: 8px; }
+
+    /* Section header */
+    .section-desc { font-size: 0.88rem; }
+
+    /* Footer */
+    .exam-footer { padding: 24px 20px; }
+    .exam-footer p { font-size: 0.78rem; }
+  }
+
+  /* ── RESPONSIVE — MOBILE ── */
+  @media (max-width: 420px) {
+    .hero { padding: 36px 16px 36px; }
+    .hero-badge { font-size: 0.65rem; letter-spacing: 0.12em; padding: 5px 12px; }
+    .hero h1 { font-size: 1.7rem; }
+    .hero p { font-size: 0.87rem; margin-bottom: 28px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-num { font-size: 1.5rem; }
+    .stat-label { font-size: 0.65rem; }
+
+    .tab-btn { padding: 13px 9px; font-size: 0.65rem; letter-spacing: 0.02em; }
+
+    .main { padding: 22px 14px 64px; }
+    .section-header { margin-bottom: 28px; }
+    .section-title { font-size: 1.35rem; }
+    .section-eyebrow { font-size: 0.65rem; }
+
+    .essay-num { font-size: 1rem; padding: 8px 14px; }
+    .essay-content { padding: 14px 14px 16px; }
+    .essay-q { font-size: 0.88rem; line-height: 1.7; }
+    .essay-marks { font-size: 0.68rem; }
+    .essay-tag, .essay-company { font-size: 0.62rem; }
+
+    .mcq-body { padding: 12px 14px 16px; }
+    .mcq-question { font-size: 0.87rem; }
+    .mcq-option { font-size: 0.83rem; padding: 9px 11px; }
+
+    .module-label { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .module-name { font-size: 1rem; }
+
+    .company-pill { font-size: 0.7rem; padding: 4px 10px; }
+
+    .overview-card { padding: 16px; }
+    .ov-title { font-size: 1rem; }
+    .ov-desc { font-size: 0.82rem; }
+
+    .instructions { padding: 16px 14px; }
+    .instructions li { font-size: 0.82rem; }
+
+    .section-desc { font-size: 0.84rem; }
+    .mod-item-title { font-size: 0.83rem; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .nav-wrap { display: none; }
+    .section-panel { display: block !important; }
+    .essay-card, .mcq-card { break-inside: avoid; }
+  }
+
+  /* ── SCROLL BEHAVIOR ── */
+  html { scroll-behavior: smooth; }
+
+  /* ── MOBILE BOTTOM NAV ── */
+  .mobile-nav { display: none; }
+
+  @media (max-width: 768px) {
+    .mobile-nav {
+      display: flex;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--navy);
+      border-top: 2px solid rgba(245,166,35,0.25);
+      z-index: 200;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .mobile-nav::-webkit-scrollbar { display: none; }
+    .mobile-nav .tab-btn {
+      flex: 0 0 auto;
+      padding: 12px 14px;
+      font-size: 0.68rem;
+      border-bottom: none;
+      border-top: 3px solid transparent;
+      white-space: nowrap;
+    }
+    .mobile-nav .tab-btn.active {
+      color: var(--accent-gold);
+      border-top-color: var(--accent-gold);
+      border-bottom-color: transparent;
+    }
+    .nav-wrap { position: static; box-shadow: none; }
+    .main { padding-bottom: 88px !important; }
+    .exam-footer { margin-bottom: 56px; }
+  }
+  @media (max-width: 420px) {
+    .mobile-nav .tab-btn { padding: 11px 10px; font-size: 0.63rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">VAA Global · CSRM Programme</div>
+    <h1>Final Examination<span>Customer Service & Relationship Management</span></h1>
+    <p>A comprehensive assessment covering all five modules — grounded in real-world Nigerian business scenarios across diverse industries.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">120</span>
+        <span class="stat-label">Total Questions</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">20</span>
+        <span class="stat-label">Essay Questions</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100</span>
+        <span class="stat-label">MCQ Questions</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">50+</span>
+        <span class="stat-label">Nigerian Companies</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('overview', this)">Overview</button>
+    <button class="tab-btn" onclick="showTab('essay', this)">Essay Questions</button>
+    <button class="tab-btn" onclick="showTab('mcq1', this)">MCQ – Module 1</button>
+    <button class="tab-btn" onclick="showTab('mcq2', this)">MCQ – Module 2</button>
+    <button class="tab-btn" onclick="showTab('mcq3', this)">MCQ – Module 3</button>
+    <button class="tab-btn" onclick="showTab('mcq4', this)">MCQ – Module 4</button>
+    <button class="tab-btn" onclick="showTab('mcq5', this)">MCQ – Module 5</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- ═══════════════ OVERVIEW ═══════════════ -->
+  <div id="overview" class="section-panel active">
+    <div class="section-header">
+      <div class="section-eyebrow">Examination Guide</div>
+      <h2 class="section-title">About This Final Exam</h2>
+      <p class="section-desc">This exam evaluates your mastery of all CSRM curriculum modules. All case studies reference real Nigerian companies across technology, fintech, real estate, telecoms, e-commerce, banking, logistics, and more.</p>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="ov-icon">📝</div>
+        <div class="ov-title">Part A — Essay Questions</div>
+        <div class="ov-desc">20 practical, scenario-based essay questions. Each question draws from a real Nigerian company context. Write structured, well-argued responses demonstrating applied knowledge.</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-icon">🔘</div>
+        <div class="ov-title">Part B — MCQ Questions</div>
+        <div class="ov-desc">100 multiple-choice questions across all five modules (20 per module). Select the single best answer for each question. Time allocated: 2 hours.</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-icon">🇳🇬</div>
+        <div class="ov-title">Nigerian Industry Context</div>
+        <div class="ov-desc">All scenarios feature Nigerian companies — from Flutterwave and MTN Nigeria to Jumia, Dangote, UACN, Sabi, and more. Apply your knowledge in local, relevant contexts.</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-icon">🎯</div>
+        <div class="ov-title">Exam Scoring</div>
+        <div class="ov-desc">Essay: 20 × 10 marks = 200 marks. MCQ: 100 × 1 mark = 100 marks. Total: 300 marks. Pass mark: 60%. Distinction: 80% and above.</div>
+      </div>
+    </div>
+
+    <div class="module-overview">
+      <h3>Module Coverage — MCQ Distribution</h3>
+      <div class="mod-list">
+        <div class="mod-item">
+          <span class="mod-item-title">Module 1 · Foundations of Customer Service</span>
+          <span class="mod-item-count">20 Questions</span>
+        </div>
+        <div class="mod-item">
+          <span class="mod-item-title">Module 2 · Relationship Management</span>
+          <span class="mod-item-count">20 Questions</span>
+        </div>
+        <div class="mod-item">
+          <span class="mod-item-title">Module 3 · Communication Skills</span>
+          <span class="mod-item-count">20 Questions</span>
+        </div>
+        <div class="mod-item">
+          <span class="mod-item-title">Module 4 · Handling Challenges</span>
+          <span class="mod-item-count">20 Questions</span>
+        </div>
+        <div class="mod-item">
+          <span class="mod-item-title">Module 5 · Metrics, Feedback & Growth</span>
+          <span class="mod-item-count">20 Questions</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="companies-section">
+      <h3>📍 Nigerian Companies Featured in This Exam</h3>
+      <div class="companies-grid">
+        <span class="company-pill">Flutterwave</span>
+        <span class="company-pill">Paystack</span>
+        <span class="company-pill">MTN Nigeria</span>
+        <span class="company-pill">Airtel Nigeria</span>
+        <span class="company-pill">Jumia Nigeria</span>
+        <span class="company-pill">Konga</span>
+        <span class="company-pill">GTBank</span>
+        <span class="company-pill">Access Bank</span>
+        <span class="company-pill">Zenith Bank</span>
+        <span class="company-pill">First Bank Nigeria</span>
+        <span class="company-pill">UBA</span>
+        <span class="company-pill">FCMB</span>
+        <span class="company-pill">Opay</span>
+        <span class="company-pill">PalmPay</span>
+        <span class="company-pill">Carbon (PayLater)</span>
+        <span class="company-pill">Cowrywise</span>
+        <span class="company-pill">PiggyVest</span>
+        <span class="company-pill">Andela</span>
+        <span class="company-pill">Dangote Group</span>
+        <span class="company-pill">BUA Group</span>
+        <span class="company-pill">UACN</span>
+        <span class="company-pill">Interswitch</span>
+        <span class="company-pill">SystemSpecs</span>
+        <span class="company-pill">Terragon Group</span>
+        <span class="company-pill">54gene</span>
+        <span class="company-pill">Sabi</span>
+        <span class="company-pill">TradeDepot</span>
+        <span class="company-pill">Farmcrowdy</span>
+        <span class="company-pill">Farmforte</span>
+        <span class="company-pill">Chowdeck</span>
+        <span class="company-pill">Glovo Nigeria</span>
+        <span class="company-pill">DHL Nigeria</span>
+        <span class="company-pill">GIG Logistics</span>
+        <span class="company-pill">Kobo360</span>
+        <span class="company-pill">DSTV (MultiChoice)</span>
+        <span class="company-pill">IrokoTV</span>
+        <span class="company-pill">Bolt Nigeria</span>
+        <span class="company-pill">Uber Nigeria</span>
+        <span class="company-pill">Innoson Vehicles</span>
+        <span class="company-pill">Shoprite Nigeria</span>
+        <span class="company-pill">Lagos Business School</span>
+        <span class="company-pill">Leadway Assurance</span>
+        <span class="company-pill">AXA Mansard</span>
+        <span class="company-pill">AIICO Insurance</span>
+        <span class="company-pill">Mixta Africa</span>
+        <span class="company-pill">Adron Homes</span>
+        <span class="company-pill">Cappa & D'Alberto</span>
+        <span class="company-pill">NG Clearing (NIBSS)</span>
+        <span class="company-pill">HMD Nigeria</span>
+        <span class="company-pill">Healthtracka</span>
+        <span class="company-pill">Helium Health</span>
+        <span class="company-pill">Gokada</span>
+        <span class="company-pill">Moove Africa</span>
+        <span class="company-pill">Eden Life</span>
+        <span class="company-pill">Stears</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ ESSAY QUESTIONS ═══════════════ -->
+  <div id="essay" class="section-panel">
+    <div class="section-header">
+      <div class="section-eyebrow">Part A · Essay Assessment</div>
+      <h2 class="section-title">Practical Essay Questions</h2>
+      <p class="section-desc">Answer any 10 of the 20 questions below. Each question is worth 10 marks. Write well-structured, detailed responses using real customer service principles from the CSRM curriculum.</p>
+    </div>
+
+    <div class="instructions">
+      <h3>Instructions</h3>
+      <ul>
+        <li>Answer 10 out of 20 questions</li>
+        <li>Each question = 10 marks</li>
+        <li>Minimum 300 words per answer</li>
+        <li>Reference course concepts clearly</li>
+        <li>Use examples where applicable</li>
+      </ul>
+    </div>
+
+    <!-- Q1 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">01</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 1 · Foundations</span><span class="essay-company">Flutterwave</span>
+          <p class="essay-q">A new customer service representative at Flutterwave receives a call from a merchant in Kano who is frustrated that his payment API integration has been down for three hours during a peak sales period. The rep is unfamiliar with the technical details of the issue. Using the key customer service skills of active listening, empathy, and professional communication discussed in Module 1, describe step-by-step how this representative should handle the call. What should they say, what should they avoid, and what internal actions should they take to resolve the situation?</p>
+          <div class="essay-marks">[10 marks] — Covers: Active Listening, Empathy, Professional Communication</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">02</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 1 · Customer Types</span><span class="essay-company">GTBank</span>
+          <p class="essay-q">GTBank operates with both internal customers (staff, branch managers, back-office teams) and external customers (account holders, businesses, loan applicants). A branch manager in Port Harcourt repeatedly delays forwarding customer loan documents to the head office credit team, causing a 5-day backlog and customer complaints. Explain the concept of internal vs external customers and how the breakdown of internal customer service at GTBank is directly impacting external customer satisfaction. What concrete steps would you recommend to fix this?</p>
+          <div class="essay-marks">[10 marks] — Covers: Internal & External Customers, Service Chain</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">03</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 2 · Relationship Management</span><span class="essay-company">Jumia Nigeria</span>
+          <p class="essay-q">Jumia Nigeria's customer data shows that 65% of first-time buyers never make a second purchase. The company's CMO has asked the customer service team to develop a relationship management strategy to improve repeat purchase rates. Using the principles of relationship management covered in Module 2 — including understanding customer needs, expectations, and loyalty strategies — propose a comprehensive 90-day customer retention plan. Include at least four specific tactics Jumia can implement and explain why each addresses a known customer expectation in Nigerian e-commerce.</p>
+          <div class="essay-marks">[10 marks] — Covers: Relationship Principles, Customer Loyalty & Retention</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">04</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 2 · Customer Needs</span><span class="essay-company">Mixta Africa</span>
+          <p class="essay-q">Mixta Africa, a real estate developer, is launching a new affordable housing estate in Ibeju-Lekki, Lagos. Market research shows that buyers in this segment have three top expectations: transparent pricing, reliable completion timelines, and responsive after-sales support. However, the sales and customer service teams have historically focused only on closing deals. Explain how understanding and managing customer expectations (not just needs) is central to relationship management in real estate. How should Mixta Africa realign its customer service model to build long-term buyer trust and loyalty?</p>
+          <div class="essay-marks">[10 marks] — Covers: Customer Needs vs Expectations, Loyalty Strategy</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">05</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 3 · Communication</span><span class="essay-company">Paystack</span>
+          <p class="essay-q">A Paystack business development officer sends the following email to a key merchant: "Hi, saw your complaint. Our devs are on it. We'll fix ASAP. Thanks." The merchant — a large retail chain — is considering switching to a competitor after a recurring billing error that cost them ₦2.4 million. Critique this email using the principles of professional written communication from Module 3. Then rewrite the email in a way that demonstrates proper tone, empathy, clarity, accountability, and commitment to resolution. Explain each element of your rewrite.</p>
+          <div class="essay-marks">[10 marks] — Covers: Written Communication, Email Etiquette</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">06</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 3 · Communication</span><span class="essay-company">MTN Nigeria</span>
+          <p class="essay-q">An MTN Nigeria customer care agent is handling a live chat session with a subscriber who is angry about being double-charged for a data bundle. The customer's messages are increasingly hostile: "This is FRAUD. You people always cheat us. I'm going to the NCC!" The agent must respond in writing — not over the phone. Discuss how the principles of professional chat support, tone management, and effective questioning from Module 3 apply to this chat interaction. Write out a model chat response sequence (at least 3 exchanges) that de-escalates the situation while maintaining professionalism.</p>
+          <div class="essay-marks">[10 marks] — Covers: Written Chat, Tone, Active Listening in Text</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">07</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 4 · Handling Challenges</span><span class="essay-company">Access Bank</span>
+          <p class="essay-q">A high-net-worth Access Bank customer walks into a Victoria Island branch furious after a failed ₦5 million transfer that has left her unable to pay a business vendor. She is demanding to speak with the MD and is threatening to post about the situation on social media with 180,000 followers. Using the de-escalation and problem-solving framework from Module 4, write a detailed account of how the branch customer service manager should handle this situation — from the moment the customer enters the branch to follow-up after resolution. Include what should NOT be said or done.</p>
+          <div class="essay-marks">[10 marks] — Covers: De-escalation, Complaints Management, Problem-Solving</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">08</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 4 · Turning Challenges</span><span class="essay-company">Chowdeck</span>
+          <p class="essay-q">Chowdeck, a food delivery platform, experiences a major system outage on Christmas Day, affecting thousands of orders. Hundreds of angry customers take to Twitter. The customer service team is overwhelmed. Discuss how this crisis — while a challenge — can be "turned into an opportunity" as discussed in Module 4. What specific strategies would you recommend to Chowdeck's CS leadership to (a) manage the immediate damage, (b) retain affected customers, and (c) use this experience to build stronger long-term brand loyalty? Give concrete examples for each strategy.</p>
+          <div class="essay-marks">[10 marks] — Covers: Turning Challenges into Opportunities, Crisis Management</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">09</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 4 · CRM Tools</span><span class="essay-company">GIG Logistics</span>
+          <p class="essay-q">GIG Logistics is growing rapidly across Nigeria and plans to implement a CRM platform to manage their customer interactions. Currently, complaints come in via phone, email, social media, and walk-ins — but there is no centralised system. A customer who reported a lost parcel three weeks ago has called five times and spoken to five different agents, each time having to re-explain the full story. Using your knowledge of CRM platforms and ticketing systems from Module 4, explain how a proper CRM implementation would have prevented this experience. What features should GIG Logistics prioritise in selecting and deploying their CRM system?</p>
+          <div class="essay-marks">[10 marks] — Covers: CRM Platforms, Ticketing Systems, Complaint Tracking</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">10</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 5 · Metrics</span><span class="essay-company">Opay</span>
+          <p class="essay-q">Opay's Head of Customer Experience wants to implement three key metrics — CSAT (Customer Satisfaction Score), NPS (Net Promoter Score), and CES (Customer Effort Score) — to measure service quality across their 30 million active users. Explain what each metric measures, how it differs from the others, and why all three are necessary for a complete picture of customer service performance. Then propose a realistic measurement framework for Opay — specifying when each metric should be collected, how frequently, and what action thresholds the CS team should respond to.</p>
+          <div class="essay-marks">[10 marks] — Covers: CSAT, NPS, CES, Measurement Framework</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q11 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">11</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 5 · Feedback</span><span class="essay-company">Andela</span>
+          <p class="essay-q">Andela's talent success team collects post-placement feedback from both the engineers they deploy and the companies that hire them. Analysis of the last quarter's data shows a consistent theme: engineers feel under-supported in their first 30 days, while client companies report slow response times to their queries. Describe a structured process for collecting, analysing, and acting on customer feedback, as covered in Module 5. How should Andela's CS team use this feedback data to drive measurable improvements? Include how they should prioritise which feedback signals to act on first.</p>
+          <div class="essay-marks">[10 marks] — Covers: Collecting & Analysing Feedback, Action Planning</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q12 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">12</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 5 · Professional Growth</span><span class="essay-company">Zenith Bank</span>
+          <p class="essay-q">A Zenith Bank customer service officer in the Abuja main branch has been in the role for 2 years. She handles an average of 80 customer interactions daily, many involving complex complaints and frustrated customers. She has recently started showing signs of burnout — arriving late, appearing disengaged, and giving short, unhelpful responses. Using the professional growth framework from Module 5, discuss: (a) the role of stress management in customer service sustainability, (b) what the bank's CS management should do to support her, and (c) how she can use a Personal Development Plan (PDP) to rebuild her engagement and plan her career growth within the industry.</p>
+          <div class="essay-marks">[10 marks] — Covers: Stress Management, Career Development, PDP</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q13 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">13</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 1 & 3 · Integration</span><span class="essay-company">Helium Health</span>
+          <p class="essay-q">Helium Health provides health management software to hospitals across Nigeria. A hospital administrator in Enugu emails the support team saying their patient scheduling module has been "completely useless" since the last update and that they are considering cancelling their ₦4.8 million annual subscription. The email tone is sharp but the technical complaint is valid. Applying both Module 1 foundations (empathy, professional communication) and Module 3 written communication principles (tone, email etiquette, clarity), write the ideal response email from Helium Health's customer success manager. Annotate your response, explaining each strategic communication choice you made.</p>
+          <div class="essay-marks">[10 marks] — Covers: Cross-module integration, Written Communication, Empathy</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q14 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">14</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 2 & 4 · Integration</span><span class="essay-company">PiggyVest</span>
+          <p class="essay-q">PiggyVest has seen a 22% spike in account closures over the last quarter. Exit surveys show the top reasons are: "I couldn't access my savings when I needed it," "The app kept glitching," and "Customer support took too long." Using relationship management principles (Module 2) and challenge-handling techniques (Module 4), design a comprehensive "Customer Win-Back and Retention" strategy for PiggyVest. Address each of the three exit reasons with specific service design and communication solutions. How can PiggyVest re-engage churned customers and prevent future departures?</p>
+          <div class="essay-marks">[10 marks] — Covers: Retention, Complaint Resolution, Relationship Recovery</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q15 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">15</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 3 · Non-Verbal</span><span class="essay-company">Shoprite Nigeria</span>
+          <p class="essay-q">A Shoprite Nigeria customer service desk agent is observed by a mystery shopper. The shopper notes that while the agent verbally apologises for a billing error and promises to fix it, she avoids eye contact, crosses her arms, and sighs audibly when the customer asks follow-up questions. The customer later rates the interaction 2/5, noting "She said the right words but I didn't feel helped." Explain the role of non-verbal communication and body language in customer service, as covered in Module 3. Why did non-verbal signals override the agent's verbal message? What training interventions would you recommend to address this gap?</p>
+          <div class="essay-marks">[10 marks] — Covers: Non-Verbal Communication, Body Language, Active Listening</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q16 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">16</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 1 · Foundations</span><span class="essay-company">Bolt Nigeria</span>
+          <p class="essay-q">Bolt Nigeria's customer service team handles complaints from two distinct groups: riders (external customers) and drivers (who can also be considered internal/partner customers). A driver in Lagos files a complaint that his earnings were incorrectly deducted for a trip cancellation he says was the rider's fault. Simultaneously, a rider complains that her driver was rude and she wants a refund. Both complaints arrive within minutes. How should the Bolt CS team approach handling both cases simultaneously? Discuss the concept of customer types in this gig-economy context and how prioritisation, fairness, and professionalism should guide their response.</p>
+          <div class="essay-marks">[10 marks] — Covers: Customer Types, Service Prioritisation, Professionalism</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q17 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">17</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 4 · Problem-Solving</span><span class="essay-company">Carbon (PayLater)</span>
+          <p class="essay-q">A Carbon (PayLater) loan customer in Ibadan discovers that his credit score was wrongly marked as defaulted due to a system error — even though he paid his loan on time. This has caused him to be denied credit at two other financial institutions. He contacts Carbon's support team visibly distressed. Using the problem-solving framework from Module 4, outline the complete complaint resolution process the agent should follow, from first contact to final resolution. Discuss how Carbon should handle the customer's emotional distress, the technical error, the third-party impact, and any goodwill gestures that would be appropriate.</p>
+          <div class="essay-marks">[10 marks] — Covers: Problem-Solving, De-escalation, Complaint Resolution</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q18 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">18</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 2 · Loyalty</span><span class="essay-company">DSTV (MultiChoice Nigeria)</span>
+          <p class="essay-q">MultiChoice Nigeria (DSTV) faces increasing competition from streaming platforms like Netflix, IrokoTV, and YouTube. Many long-term DSTV subscribers are downgrading or cancelling subscriptions. A 10-year DSTV Premium subscriber in Abuja calls to cancel, saying the content is outdated and the price is too high. The agent has 5 minutes to attempt retention before processing the cancellation. Using customer loyalty and retention strategies from Module 2, design the ideal retention conversation. What questions should the agent ask? What offers or solutions could be presented? What tone and approach should guide the entire interaction?</p>
+          <div class="essay-marks">[10 marks] — Covers: Customer Loyalty, Retention, Relationship Management</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q19 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">19</div>
+        <div class="essay-content">
+          <span class="essay-tag">Module 3 · Verbal Communication</span><span class="essay-company">UBA</span>
+          <p class="essay-q">A UBA phone banking agent receives a call from an elderly retired civil servant who is confused about why her pension has not been credited to her account. She has been put on hold twice and transferred to three different agents. She is now on the verge of tears. Discuss the principles of verbal communication from Module 3 — specifically tone, clarity, and effective questioning — and how they apply to communicating with vulnerable or elderly customers. Write out the full verbal script the agent should use to handle this call, demonstrating each principle. Include opening, discovery, resolution, and close.</p>
+          <div class="essay-marks">[10 marks] — Covers: Verbal Communication, Tone, Effective Questioning</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q20 -->
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-num">20</div>
+        <div class="essay-content">
+          <span class="essay-tag">All Modules · Capstone</span><span class="essay-company">Cowrywise</span>
+          <p class="essay-q">You have just been appointed as the Head of Customer Experience at Cowrywise, a leading Nigerian savings and investment platform with 500,000 users. During your first week, you discover: (1) There are no defined customer service metrics being tracked. (2) The support team has no formal communication training. (3) Complaints are managed via a shared WhatsApp group. (4) There is no loyalty or retention programme. (5) Staff are burning out due to high volumes and no clear escalation path. Drawing on ALL five modules of the CSRM curriculum, write a comprehensive 6-month Customer Experience Transformation Plan for Cowrywise. Address each of the five identified gaps with specific, practical solutions grounded in the curriculum.</p>
+          <div class="essay-marks">[10 marks] — Covers: All Modules — Capstone Integration Question</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ MCQ MODULE 1 ═══════════════ -->
+  <div id="mcq1" class="section-panel">
+    <div class="section-header">
+      <div class="section-eyebrow">Part B · Multiple Choice</div>
+      <h2 class="section-title">Module 1: Foundations of Customer Service</h2>
+      <p class="section-desc">20 questions on customer service fundamentals, customer types, and key skills. Select the single best answer for each question.</p>
+    </div>
+
+    <div class="mcq-module">
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q1</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Interswitch</span>
+            <p class="mcq-question">An Interswitch support agent is speaking with a merchant about a declined transaction. The agent interrupts the merchant mid-sentence to offer a solution. Which customer service principle is the agent violating?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Professional communication</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Active listening</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Empathy</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Service ownership</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q2</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">First Bank Nigeria</span>
+            <p class="mcq-question">A First Bank back-office processing team consistently delays document verification, causing the retail branch's turnaround time to suffer. This is best described as a failure in:</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> External customer service</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Internal customer service</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Customer retention</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> CRM integration</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q3</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Konga</span>
+            <p class="mcq-question">A Konga customer says, "I feel like nobody cares about my order." The most empathetic response from the agent is:</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> "Let me check the system quickly."</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> "I completely understand your frustration and I want to personally make this right for you."</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> "Our policies state that delivery takes 5–7 days."</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> "You should have ordered earlier."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q4</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Airtel Nigeria</span>
+            <p class="mcq-question">Which of the following BEST describes "customer service" in a modern business context like Airtel Nigeria?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> The process of selling products to customers</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> All interactions that support customer needs before, during, and after a purchase</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Handling only negative feedback from dissatisfied customers</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> The IT department's responsibility to maintain the billing system</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q5</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Farmcrowdy</span>
+            <p class="mcq-question">A Farmcrowdy investor calls to ask about returns on their agribusiness investment. The agent mirrors back the key points the investor raised before responding. This technique is known as:</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Reflective questioning</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Paraphrasing for active listening</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Cold calling technique</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Upselling framework</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q6</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Dangote Group</span>
+            <p class="mcq-question">At Dangote Group's customer relations desk, a buyer of cement products complains that prices were raised without notice. The agent acknowledges the concern and explains pricing policy calmly. This is an example of:</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Relationship building through professional communication</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Customer onboarding</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Up-selling strategy</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Service failure recovery</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q7</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Healthtracka</span>
+            <p class="mcq-question">Healthtracka sends a health test kit to a customer. The customer is confused and calls support. The agent uses too much medical jargon and the customer hangs up still confused. What communication skill is most lacking?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Empathy</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Clarity and plain language</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> CRM usage</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Escalation protocol</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q8</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Moove Africa</span>
+            <p class="mcq-question">Moove Africa finances vehicles for ride-hailing drivers. A driver-partner visits the office in tears about a repossession notice he believes was sent in error. Which of the following should the customer service officer do FIRST?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Explain the company's repossession policy immediately</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Ask the driver to submit a written complaint</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Acknowledge the driver's distress and give them space to explain the situation fully</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Transfer to a supervisor without explanation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q9</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">BUA Group</span>
+            <p class="mcq-question">Which of the following is an example of an INTERNAL customer at BUA Group?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> A flour distributor placing a bulk order</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> A supermarket chain purchasing BUA sugar</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> The warehouse team receiving orders from the sales department</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> A foreign investor reviewing BUA's annual report</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q10</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Eden Life</span>
+            <p class="mcq-question">Eden Life provides home cleaning and errand services. What is the PRIMARY purpose of empathy in customer service for a company like Eden Life?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> To increase average order value</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> To make the customer feel heard, valued, and understood — especially when things go wrong</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> To reduce the number of complaints filed per month</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> To train new customer service hires</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q11</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Stears</span>
+            <p class="mcq-question">Stears, a data and business intelligence platform, has enterprise clients who pay for premium subscriptions. When a client emails about a data error, which element of professional communication should appear in the response FIRST?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> A disclaimer about data accuracy limitations</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Acknowledgement of the issue and appreciation for reporting it</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> A request for the client to provide screenshots</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> A list of the platform's features and updates</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q12</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Adron Homes</span>
+            <p class="mcq-question">A prospective homebuyer walks into an Adron Homes office and the CSR immediately launches into a sales pitch without asking any questions. What key customer service skill is the CSR neglecting?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Upselling</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Active listening to understand customer needs first</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> CRM logging</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Ticket escalation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q13</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Leadway Assurance</span>
+            <p class="mcq-question">A Leadway Assurance claims officer tells a client, "It's not my department's fault — the underwriting team caused this delay." This response fails which customer service principle?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Internal customer awareness</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Service ownership and accountability to the external customer</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Customer segmentation</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> CSAT measurement</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q14</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">SystemSpecs (Remita)</span>
+            <p class="mcq-question">Which of the following statements about customer service is FALSE?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Customer service is a revenue-generating function as well as a support function</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Only customer-facing roles are responsible for customer service quality</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Excellent customer service can turn a dissatisfied customer into a brand advocate</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Active listening can prevent misunderstandings before they become complaints</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q15</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">HMD Nigeria</span>
+            <p class="mcq-question">A customer returns a HMD (Nokia) phone purchased two weeks ago claiming it won't charge. The agent, skeptical, asks in a doubtful tone: "Are you SURE you're using the right charger?" This is an example of what communication failure?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Failure to use a CRM system</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Lack of empathy and presumptive tone that damages trust</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Incorrect use of active listening</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Failure to escalate the complaint</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q16</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Gokada</span>
+            <p class="mcq-question">Gokada's customer service receives a complaint from a business customer and a personal user at the same time. Limited staff are available. What principle should guide who is served first?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Always serve personal users first as they are the end consumer</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Serve based on who registered first on the platform</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Prioritise based on urgency, impact, and customer tier in accordance with defined service standards</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Serve the business customer first because they pay more</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q17</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">AIICO Insurance</span>
+            <p class="mcq-question">A customer calls AIICO Insurance asking about their life policy and the agent responds enthusiastically with a full product upsell before addressing the customer's actual question. This violates which customer service principle?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Empathy — failing to acknowledge the customer's reason for calling first</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> CRM data entry</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> NPS measurement</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Feedback collection</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q18</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">NIBSS (NG Clearing)</span>
+            <p class="mcq-question">Which of the following is NOT one of the key skills in the Foundations of Customer Service module?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Active Listening</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Empathy</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Professional Communication</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> Financial Auditing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q19</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">TradeDepot</span>
+            <p class="mcq-question">A TradeDepot field sales agent discovers that the warehouse team (internal customer) was not given proper notice before a large delivery, leading to missed stocks for a retailer. This scenario best illustrates:</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> How internal service failures cascade into external customer dissatisfaction</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> The need for better product pricing</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> A marketing alignment issue only</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> A technology infrastructure problem</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcq-card">
+        <div class="mcq-head">
+          <div class="mcq-num">Q20</div>
+          <div class="mcq-body">
+            <span class="mcq-company-tag">Terragon Group</span>
+            <p class="mcq-question">Terragon Group uses data to deliver targeted marketing to Nigerian consumers on behalf of brands. A brand manager (internal client) submits a campaign brief but the CS team proceeds without confirming key targeting parameters. What customer service principle should the CS team have applied?</p>
+            <div class="mcq-options">
+              <div class="mcq-option"><span class="opt-letter">A.</span> Empathy — to feel the client's excitement about the campaign</div>
+              <div class="mcq-option"><span class="opt-letter">B.</span> Active listening and clarifying questions to confirm requirements before execution</div>
+              <div class="mcq-option"><span class="opt-letter">C.</span> Escalation to a senior manager</div>
+              <div class="mcq-option"><span class="opt-letter">D.</span> CSAT survey deployment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ MCQ MODULE 2 ═══════════════ -->
+  <div id="mcq2" class="section-panel">
+    <div class="section-header">
+      <div class="section-eyebrow">Part B · Multiple Choice</div>
+      <h2 class="section-title">Module 2: Relationship Management</h2>
+      <p class="section-desc">20 questions on relationship principles, customer needs, expectations, loyalty and retention. Select the single best answer.</p>
+    </div>
+
+    <div class="mcq-module">
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q21</div><div class="mcq-body"><span class="mcq-company-tag">PalmPay</span><p class="mcq-question">PalmPay rewards users who refer new customers with cashback bonuses. This is an example of which customer loyalty strategy?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Customer complaint management</div><div class="mcq-option"><span class="opt-letter">B.</span> Referral-based loyalty programme</div><div class="mcq-option"><span class="opt-letter">C.</span> NPS collection</div><div class="mcq-option"><span class="opt-letter">D.</span> Service escalation model</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q22</div><div class="mcq-body"><span class="mcq-company-tag">Cowrywise</span><p class="mcq-question">The first principle of effective relationship management is:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Selling as many products as possible to each customer</div><div class="mcq-option"><span class="opt-letter">B.</span> Understanding and consistently meeting customer needs and expectations over time</div><div class="mcq-option"><span class="opt-letter">C.</span> Collecting CSAT scores after every interaction</div><div class="mcq-option"><span class="opt-letter">D.</span> Assigning each customer a dedicated account manager</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q23</div><div class="mcq-body"><span class="mcq-company-tag">Mixta Africa</span><p class="mcq-question">A Mixta Africa homebuyer was told their apartment would be ready in December. It is now March and there is still no update. The customer's expectation was not managed. Which relationship management principle was violated?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Proactive communication and expectation management</div><div class="mcq-option"><span class="opt-letter">B.</span> NPS measurement</div><div class="mcq-option"><span class="opt-letter">C.</span> Customer segmentation</div><div class="mcq-option"><span class="opt-letter">D.</span> Ticketing system use</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q24</div><div class="mcq-body"><span class="mcq-company-tag">Jumia Nigeria</span><p class="mcq-question">Which of the following BEST differentiates a customer's "needs" from their "expectations"?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Needs are emotional; expectations are rational</div><div class="mcq-option"><span class="opt-letter">B.</span> Needs are what the customer requires; expectations are the standard they believe will be met based on past experience or promises</div><div class="mcq-option"><span class="opt-letter">C.</span> Needs are short-term; expectations are long-term</div><div class="mcq-option"><span class="opt-letter">D.</span> Needs apply only to B2B customers; expectations apply to B2C</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q25</div><div class="mcq-body"><span class="mcq-company-tag">GTBank</span><p class="mcq-question">GTBank's premium banking clients receive a dedicated relationship manager, priority queue access, and quarterly portfolio reviews. This is an example of:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Customer complaint resolution</div><div class="mcq-option"><span class="opt-letter">B.</span> Tiered loyalty and retention strategy targeting high-value customers</div><div class="mcq-option"><span class="opt-letter">C.</span> A CRM system update</div><div class="mcq-option"><span class="opt-letter">D.</span> Employee professional development</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q26</div><div class="mcq-body"><span class="mcq-company-tag">Bolt Nigeria</span><p class="mcq-question">Bolt Nigeria sends a personalised discount code to a user who hasn't taken a ride in 30 days. This strategy is known as:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> De-escalation</div><div class="mcq-option"><span class="opt-letter">B.</span> Win-back or re-engagement retention strategy</div><div class="mcq-option"><span class="opt-letter">C.</span> CES measurement</div><div class="mcq-option"><span class="opt-letter">D.</span> Internal customer communication</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q27</div><div class="mcq-body"><span class="mcq-company-tag">Sabi</span><p class="mcq-question">Sabi, a B2B commerce platform serving informal market traders, discovers that its top 20% of merchants generate 70% of revenue. What relationship management strategy should Sabi apply?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Treat all merchants equally regardless of value</div><div class="mcq-option"><span class="opt-letter">B.</span> Implement tiered service with dedicated account management for high-value merchants</div><div class="mcq-option"><span class="opt-letter">C.</span> Reduce contact with lower-tier merchants</div><div class="mcq-option"><span class="opt-letter">D.</span> Focus marketing only on acquiring new merchants</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q28</div><div class="mcq-body"><span class="mcq-company-tag">AXA Mansard</span><p class="mcq-question">Which of the following is the BEST definition of customer loyalty in a service company like AXA Mansard?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> A customer who has never complained</div><div class="mcq-option"><span class="opt-letter">B.</span> A customer who consistently repurchases, refers others, and resists competitive offers</div><div class="mcq-option"><span class="opt-letter">C.</span> A customer who follows the company on social media</div><div class="mcq-option"><span class="opt-letter">D.</span> A customer who has used the service for more than one year</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q29</div><div class="mcq-body"><span class="mcq-company-tag">Flutterwave</span><p class="mcq-question">Flutterwave wants to reduce merchant churn. Which of the following is the MOST proactive retention strategy?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Waiting for merchants to complain before addressing issues</div><div class="mcq-option"><span class="opt-letter">B.</span> Conducting regular business reviews, identifying at-risk merchants early, and offering tailored support</div><div class="mcq-option"><span class="opt-letter">C.</span> Offering the same discount to all merchants</div><div class="mcq-option"><span class="opt-letter">D.</span> Sending monthly newsletters</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q30</div><div class="mcq-body"><span class="mcq-company-tag">Carbon (PayLater)</span><p class="mcq-question">A Carbon customer has taken and repaid three loans on time. When they apply for a fourth, they are asked to go through the full documentation process again. What relationship management principle has Carbon failed to apply?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Recognising and rewarding demonstrated customer loyalty with a streamlined experience</div><div class="mcq-option"><span class="opt-letter">B.</span> CES measurement</div><div class="mcq-option"><span class="opt-letter">C.</span> De-escalation</div><div class="mcq-option"><span class="opt-letter">D.</span> Professional written communication</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q31</div><div class="mcq-body"><span class="mcq-company-tag">DSTV (MultiChoice)</span><p class="mcq-question">A long-term DSTV subscriber calls to cancel. The agent immediately processes the cancellation without any retention attempt. This is a failure of:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Ticketing system usage</div><div class="mcq-option"><span class="opt-letter">B.</span> Customer retention protocol — the agent should attempt to understand and address the reason for leaving</div><div class="mcq-option"><span class="opt-letter">C.</span> Internal customer service</div><div class="mcq-option"><span class="opt-letter">D.</span> NPS data collection</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q32</div><div class="mcq-body"><span class="mcq-company-tag">Uber Nigeria</span><p class="mcq-question">Uber Nigeria offers a tiered loyalty programme where frequent riders earn credits. What psychological principle does this strategy leverage?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Fear of loss — customers afraid of losing their status</div><div class="mcq-option"><span class="opt-letter">B.</span> Reciprocity and reward — customers continue using the service to earn and maintain benefits</div><div class="mcq-option"><span class="opt-letter">C.</span> Social proof — riders seeing others use Uber</div><div class="mcq-option"><span class="opt-letter">D.</span> Authority bias — trusting Uber because it is well-known</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q33</div><div class="mcq-body"><span class="mcq-company-tag">Andela</span><p class="mcq-question">Andela's client success team checks in with client companies every 2 weeks during an active engineer placement. This is an example of:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Reactive customer service</div><div class="mcq-option"><span class="opt-letter">B.</span> Proactive relationship management to ensure satisfaction and catch issues early</div><div class="mcq-option"><span class="opt-letter">C.</span> A CRM data collection exercise</div><div class="mcq-option"><span class="opt-letter">D.</span> Employee performance review</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q34</div><div class="mcq-body"><span class="mcq-company-tag">Innoson Vehicles</span><p class="mcq-question">Innoson Vehicles sells commercial trucks to logistics companies across Nigeria. After the sale, there is NO after-sales relationship management. Customers who have issues go months without response. This gap will most directly result in:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Decreased employee satisfaction scores</div><div class="mcq-option"><span class="opt-letter">B.</span> Loss of repeat business and negative word-of-mouth in the commercial vehicle market</div><div class="mcq-option"><span class="opt-letter">C.</span> Lower NPS scores only</div><div class="mcq-option"><span class="opt-letter">D.</span> Increased social media engagement</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q35</div><div class="mcq-body"><span class="mcq-company-tag">Farmforte</span><p class="mcq-question">A Farmforte agribusiness investor feels their concerns about a harvest delay are being dismissed. The relationship manager focuses only on future investment pitches. What critical relationship management skill is absent?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Up-selling ability</div><div class="mcq-option"><span class="opt-letter">B.</span> Understanding and validating current customer needs and concerns before progressing</div><div class="mcq-option"><span class="opt-letter">C.</span> CRM ticket management</div><div class="mcq-option"><span class="opt-letter">D.</span> CSAT survey design</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q36</div><div class="mcq-body"><span class="mcq-company-tag">Paystack</span><p class="mcq-question">Paystack's relationship model involves assigning dedicated merchant success managers to high-volume businesses. This model is effective primarily because:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> It creates a single point of accountability and builds personal, trust-based relationships</div><div class="mcq-option"><span class="opt-letter">B.</span> It reduces the company's need for a ticketing system</div><div class="mcq-option"><span class="opt-letter">C.</span> It eliminates the need for CSAT measurements</div><div class="mcq-option"><span class="opt-letter">D.</span> It is cheaper than general customer support</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q37</div><div class="mcq-body"><span class="mcq-company-tag">Glovo Nigeria</span><p class="mcq-question">Glovo sends every customer a 10% discount on their 5th order. A customer who orders 20 times a month receives the same discount as one who orders once a month. What is wrong with this approach?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Discounts should never be given to repeat customers</div><div class="mcq-option"><span class="opt-letter">B.</span> The loyalty strategy is not differentiated — it fails to recognise and disproportionately reward higher-value, more loyal customers</div><div class="mcq-option"><span class="opt-letter">C.</span> The discount percentage is too low</div><div class="mcq-option"><span class="opt-letter">D.</span> Nothing — equal treatment is always the fairest approach</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q38</div><div class="mcq-body"><span class="mcq-company-tag">FCMB</span><p class="mcq-question">FCMB's retail banking team conducts annual "Voice of Customer" surveys but never acts on the results. What is the most likely consequence?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Improved customer loyalty due to participation in the survey</div><div class="mcq-option"><span class="opt-letter">B.</span> Declining trust as customers feel their feedback is being ignored, leading to disengagement</div><div class="mcq-option"><span class="opt-letter">C.</span> No impact since surveys are optional</div><div class="mcq-option"><span class="opt-letter">D.</span> Better CSAT scores in the following quarter</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q39</div><div class="mcq-body"><span class="mcq-company-tag">Kobo360</span><p class="mcq-question">Kobo360 partners with truck owners to facilitate logistics. A fleet owner who has been on the platform for two years suddenly becomes inactive. What should the relationship team do FIRST?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Remove the partner from the system to free up capacity</div><div class="mcq-option"><span class="opt-letter">B.</span> Proactively reach out to understand the reason for inactivity and offer support or solutions</div><div class="mcq-option"><span class="opt-letter">C.</span> Wait until they come back on their own</div><div class="mcq-option"><span class="opt-letter">D.</span> Send them a generic re-activation email</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q40</div><div class="mcq-body"><span class="mcq-company-tag">PiggyVest</span><p class="mcq-question">PiggyVest introduces a "PiggyPoints" programme where users earn points for consistent saving behaviour that can be redeemed for financial perks. This strategy is primarily designed to:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Reduce the need for customer service agents</div><div class="mcq-option"><span class="opt-letter">B.</span> Build habitual engagement and emotional loyalty by tying rewards to the customer's financial goals</div><div class="mcq-option"><span class="opt-letter">C.</span> Replace the company's CSAT tracking system</div><div class="mcq-option"><span class="opt-letter">D.</span> Ensure regulatory compliance with CBN requirements</div></div></div></div></div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ MCQ MODULE 3 ═══════════════ -->
+  <div id="mcq3" class="section-panel">
+    <div class="section-header">
+      <div class="section-eyebrow">Part B · Multiple Choice</div>
+      <h2 class="section-title">Module 3: Communication Skills for Customer Service</h2>
+      <p class="section-desc">20 questions covering verbal, written, and non-verbal communication in customer service contexts. Select the single best answer.</p>
+    </div>
+
+    <div class="mcq-module">
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q41</div><div class="mcq-body"><span class="mcq-company-tag">Zenith Bank</span><p class="mcq-question">A Zenith Bank phone agent speaks too quickly and uses banking jargon like "T+2 settlement cycles" to a confused pensioner. Which verbal communication principle is most lacking?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Tone</div><div class="mcq-option"><span class="opt-letter">B.</span> Clarity and audience-appropriate language</div><div class="mcq-option"><span class="opt-letter">C.</span> Effective questioning</div><div class="mcq-option"><span class="opt-letter">D.</span> Non-verbal communication</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q42</div><div class="mcq-body"><span class="mcq-company-tag">IrokoTV</span><p class="mcq-question">An IrokoTV subscriber emails asking why their account was auto-renewed without their permission. The support agent replies with a 500-word response filled with dense legal language and no personalisation. What email etiquette principle is violated?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Emails should always be shorter than 100 words</div><div class="mcq-option"><span class="opt-letter">B.</span> Professional emails should be clear, concise, personalised, and written in plain language accessible to the customer</div><div class="mcq-option"><span class="opt-letter">C.</span> Agents should never respond to billing complaints in writing</div><div class="mcq-option"><span class="opt-letter">D.</span> All billing issues should be escalated to finance</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q43</div><div class="mcq-body"><span class="mcq-company-tag">Access Bank</span><p class="mcq-question">During an in-branch interaction, an Access Bank teller crosses their arms, avoids eye contact, and gives clipped one-word answers. The customer rates the visit negatively despite the teller technically completing the transaction correctly. This demonstrates that:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Technical accuracy is sufficient for a good customer experience</div><div class="mcq-option"><span class="opt-letter">B.</span> Non-verbal cues (body language) significantly shape how customers perceive the quality of service</div><div class="mcq-option"><span class="opt-letter">C.</span> Customers are too sensitive and expectations are unrealistic</div><div class="mcq-option"><span class="opt-letter">D.</span> The teller should have used the CRM system</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q44</div><div class="mcq-body"><span class="mcq-company-tag">MTN Nigeria</span><p class="mcq-question">An MTN Nigeria customer service agent asks: "Can I ask what type of issue you're experiencing — is it related to calls, data, or billing?" This is an example of:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> A leading question</div><div class="mcq-option"><span class="opt-letter">B.</span> An effective closed qualifying question to direct the conversation efficiently</div><div class="mcq-option"><span class="opt-letter">C.</span> A passive listening technique</div><div class="mcq-option"><span class="opt-letter">D.</span> A de-escalation technique</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q45</div><div class="mcq-body"><span class="mcq-company-tag">DHL Nigeria</span><p class="mcq-question">A DHL Nigeria customer service agent on a call sounds warm and patient even while delivering bad news (a parcel is lost). Which communication principle is most evident?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Effective questioning</div><div class="mcq-option"><span class="opt-letter">B.</span> Tone management — maintaining a calm, reassuring tone regardless of the content being delivered</div><div class="mcq-option"><span class="opt-letter">C.</span> Email etiquette</div><div class="mcq-option"><span class="opt-letter">D.</span> Written communication</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q46</div><div class="mcq-body"><span class="mcq-company-tag">Opay</span><p class="mcq-question">An Opay customer contacts live chat: "My account is locked and I have an urgent transfer." The agent's first message is: "Hello! Welcome to Opay Support. How are you today?" — while the customer is panicking. What is wrong with this opening?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> The agent should not greet customers at all</div><div class="mcq-option"><span class="opt-letter">B.</span> The pleasantry is inappropriate when the customer has expressed urgency — the agent should acknowledge the issue first</div><div class="mcq-option"><span class="opt-letter">C.</span> The message is too short</div><div class="mcq-option"><span class="opt-letter">D.</span> The agent should have asked for the customer's account number immediately</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q47</div><div class="mcq-body"><span class="mcq-company-tag">Helium Health</span><p class="mcq-question">Which of the following is the MOST professional email subject line for a customer complaint response from Helium Health?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> "Re: Your Complaint"</div><div class="mcq-option"><span class="opt-letter">B.</span> "RE: Scheduling Module Issue — Update & Resolution Plan [Ticket #HH-2024-1892]"</div><div class="mcq-option"><span class="opt-letter">C.</span> "Sorry About That"</div><div class="mcq-option"><span class="opt-letter">D.</span> "Hi!"</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q48</div><div class="mcq-body"><span class="mcq-company-tag">Konga</span><p class="mcq-question">A Konga customer support agent ends an email with: "Do not hesitate to contact us should you require further assistance." This closing is:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Too informal and unprofessional</div><div class="mcq-option"><span class="opt-letter">B.</span> A standard professional close that invites continued engagement</div><div class="mcq-option"><span class="opt-letter">C.</span> A de-escalation technique</div><div class="mcq-option"><span class="opt-letter">D.</span> Inappropriate for e-commerce customer service</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q49</div><div class="mcq-body"><span class="mcq-company-tag">GIG Logistics</span><p class="mcq-question">A GIG Logistics agent on a call says "Uh-huh," "I see," and "Go on" while a customer describes a delayed delivery. These are examples of:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Verbal filler words that should be eliminated</div><div class="mcq-option"><span class="opt-letter">B.</span> Verbal acknowledgements that signal active listening and encourage the customer to continue</div><div class="mcq-option"><span class="opt-letter">C.</span> Questioning techniques</div><div class="mcq-option"><span class="opt-letter">D.</span> Professional communication failures</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q50</div><div class="mcq-body"><span class="mcq-company-tag">54gene</span><p class="mcq-question">54gene, a genomics research company, needs to communicate complex health data findings to patients in simple language. What communication principle must their patient support team apply?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Use scientific terminology to maintain credibility</div><div class="mcq-option"><span class="opt-letter">B.</span> Adapt communication style and vocabulary to the audience's level of understanding</div><div class="mcq-option"><span class="opt-letter">C.</span> Always send written reports instead of verbal explanations</div><div class="mcq-option"><span class="opt-letter">D.</span> Refer all patient questions to a clinical lead</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q51</div><div class="mcq-body"><span class="mcq-company-tag">Chowdeck</span><p class="mcq-question">A Chowdeck customer complains on live chat using ALL CAPS and aggressive language. The agent's BEST first response is:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Match the customer's energy to show understanding</div><div class="mcq-option"><span class="opt-letter">B.</span> Respond calmly, acknowledge the frustration, and invite the customer to share the full details of the issue</div><div class="mcq-option"><span class="opt-letter">C.</span> Close the chat immediately and escalate</div><div class="mcq-option"><span class="opt-letter">D.</span> Ask the customer to calm down before continuing</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q52</div><div class="mcq-body"><span class="mcq-company-tag">Shoprite Nigeria</span><p class="mcq-question">A Shoprite customer service manager observes that her agent smiles and maintains good eye contact during normal interactions but becomes stiff and avoids eye contact when dealing with unhappy customers. What training focus is needed?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> How to use the CRM system</div><div class="mcq-option"><span class="opt-letter">B.</span> Maintaining consistent and positive body language particularly under pressure and in difficult interactions</div><div class="mcq-option"><span class="opt-letter">C.</span> Email writing skills</div><div class="mcq-option"><span class="opt-letter">D.</span> CSAT measurement</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q53</div><div class="mcq-body"><span class="mcq-company-tag">Paystack</span><p class="mcq-question">Which of the following is a CLOSED question a Paystack support agent might use to quickly diagnose a merchant's issue?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> "Can you tell me more about what happened?"</div><div class="mcq-option"><span class="opt-letter">B.</span> "Has this issue occurred before today?"</div><div class="mcq-option"><span class="opt-letter">C.</span> "How does this issue affect your business?"</div><div class="mcq-option"><span class="opt-letter">D.</span> "What steps have you already tried?"</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q54</div><div class="mcq-body"><span class="mcq-company-tag">Leadway Assurance</span><p class="mcq-question">A Leadway agent sends an email to a policyholder with the greeting "Dear Valued Customer" and the agent's name misspelled in the signature. Which email etiquette principle is violated?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Response time</div><div class="mcq-option"><span class="opt-letter">B.</span> Personalisation — using the customer's actual name — and attention to professional detail in the signature</div><div class="mcq-option"><span class="opt-letter">C.</span> Message length</div><div class="mcq-option"><span class="opt-letter">D.</span> Using the right email platform</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q55</div><div class="mcq-body"><span class="mcq-company-tag">UBA</span><p class="mcq-question">During a phone interaction, a UBA agent confirms understanding by saying: "So just to make sure I understand correctly — you transferred ₦50,000 to the wrong account, and you need us to initiate a recall. Is that right?" This technique is called:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Cross-selling</div><div class="mcq-option"><span class="opt-letter">B.</span> Summarising and confirming — an active listening technique that ensures accuracy before taking action</div><div class="mcq-option"><span class="opt-letter">C.</span> Emotional intelligence</div><div class="mcq-option"><span class="opt-letter">D.</span> Ticket escalation</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q56</div><div class="mcq-body"><span class="mcq-company-tag">Airtel Nigeria</span><p class="mcq-question">An Airtel customer care agent rolls their eyes (unseen) during a face-to-face interaction at a service centre. However, the customer notices a change in the agent's facial expression. What does this demonstrate?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Non-verbal communication is largely involuntary and can contradict verbal messages even when unintended</div><div class="mcq-option"><span class="opt-letter">B.</span> Facial expressions do not matter in service interactions</div><div class="mcq-option"><span class="opt-letter">C.</span> Customers are generally over-sensitive</div><div class="mcq-option"><span class="opt-letter">D.</span> The agent needs better product knowledge training</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q57</div><div class="mcq-body"><span class="mcq-company-tag">Flutterwave</span><p class="mcq-question">A Flutterwave merchant support agent responds to a chat message 4 hours after the merchant sent it, with no acknowledgement of the delay. The merchant had already resolved the issue themselves. What professional chat support principle was violated?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Response time expectations and the obligation to acknowledge receipt of messages promptly, even if resolution takes longer</div><div class="mcq-option"><span class="opt-letter">B.</span> CRM data logging</div><div class="mcq-option"><span class="opt-letter">C.</span> CSAT measurement</div><div class="mcq-option"><span class="opt-letter">D.</span> Internal customer service</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q58</div><div class="mcq-body"><span class="mcq-company-tag">Eden Life</span><p class="mcq-question">An Eden Life cleaning operative arrives and the customer immediately begins explaining several special instructions. The operative nods but is already walking toward the cleaning supplies. What non-verbal behaviour is the operative displaying?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Excellent multitasking</div><div class="mcq-option"><span class="opt-letter">B.</span> Lack of active listening — moving away while the customer speaks signals disengagement</div><div class="mcq-option"><span class="opt-letter">C.</span> Proper service initiation</div><div class="mcq-option"><span class="opt-letter">D.</span> Good non-verbal communication</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q59</div><div class="mcq-body"><span class="mcq-company-tag">Kobo360</span><p class="mcq-question">A Kobo360 operations manager sends an email to a fleet partner with the subject line "URGENT!!!!! READ NOW" about a routine route change. This email subject violates:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Active listening principles</div><div class="mcq-option"><span class="opt-letter">B.</span> Professional email etiquette — subject lines should be clear and proportionate, not alarmist when urgency is not warranted</div><div class="mcq-option"><span class="opt-letter">C.</span> CRM usage guidelines</div><div class="mcq-option"><span class="opt-letter">D.</span> Internal customer service procedures</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q60</div><div class="mcq-body"><span class="mcq-company-tag">Andela</span><p class="mcq-question">An Andela talent success manager is on a video call with a client and is seen checking their phone repeatedly during the call. Even if they are hearing everything, how does this non-verbal behaviour affect the interaction?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> It has no impact since the call content is what matters</div><div class="mcq-option"><span class="opt-letter">B.</span> It signals disrespect and disengagement, undermining the trust and quality of the relationship regardless of what is said verbally</div><div class="mcq-option"><span class="opt-letter">C.</span> It is acceptable as multitasking is expected in tech companies</div><div class="mcq-option"><span class="opt-letter">D.</span> It is a positive signal of responsiveness</div></div></div></div></div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ MCQ MODULE 4 ═══════════════ -->
+  <div id="mcq4" class="section-panel">
+    <div class="section-header">
+      <div class="section-eyebrow">Part B · Multiple Choice</div>
+      <h2 class="section-title">Module 4: Handling Challenges in Customer Service</h2>
+      <p class="section-desc">20 questions on complaint management, de-escalation, problem-solving, and customer service tools. Select the single best answer.</p>
+    </div>
+
+    <div class="mcq-module">
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q61</div><div class="mcq-body"><span class="mcq-company-tag">First Bank Nigeria</span><p class="mcq-question">A First Bank customer is shouting at a teller about a frozen account. The FIRST step in de-escalating this situation is:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Explain the bank's policy immediately</div><div class="mcq-option"><span class="opt-letter">B.</span> Acknowledge the customer's frustration and offer to listen fully to the issue</div><div class="mcq-option"><span class="opt-letter">C.</span> Call security</div><div class="mcq-option"><span class="opt-letter">D.</span> Ask the customer to come back when they are calmer</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q62</div><div class="mcq-body"><span class="mcq-company-tag">Interswitch</span><p class="mcq-question">Interswitch uses a CRM system that logs every merchant interaction across email, phone, and portal. A merchant calls with a complaint that was previously raised 10 days ago. The agent can immediately see the full history. The PRIMARY benefit of this CRM feature is:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Reduced server costs</div><div class="mcq-option"><span class="opt-letter">B.</span> The agent can resolve the issue faster without requiring the merchant to repeat their history, improving experience and efficiency</div><div class="mcq-option"><span class="opt-letter">C.</span> Automatically de-escalating customer complaints</div><div class="mcq-option"><span class="opt-letter">D.</span> Measuring CSAT automatically</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q63</div><div class="mcq-body"><span class="mcq-company-tag">Jumia Nigeria</span><p class="mcq-question">A Jumia customer received the wrong product and demands a refund. The agent says "That's not our fault — it's the seller's." This response is an example of:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Good problem-solving</div><div class="mcq-option"><span class="opt-letter">B.</span> Poor complaint handling — the customer's experience is Jumia's responsibility regardless of the internal fault chain</div><div class="mcq-option"><span class="opt-letter">C.</span> A CRM escalation step</div><div class="mcq-option"><span class="opt-letter">D.</span> Proper policy communication</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q64</div><div class="mcq-body"><span class="mcq-company-tag">Chowdeck</span><p class="mcq-question">Chowdeck's platform goes down during a major evening peak. The customer service team proactively posts on social media acknowledging the issue and providing an ETA for resolution. This demonstrates which principle?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Reactive complaint management</div><div class="mcq-option"><span class="opt-letter">B.</span> Proactive communication that turns a challenge into a trust-building opportunity</div><div class="mcq-option"><span class="opt-letter">C.</span> CRM data analysis</div><div class="mcq-option"><span class="opt-letter">D.</span> CSAT deployment</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q65</div><div class="mcq-body"><span class="mcq-company-tag">Carbon (PayLater)</span><p class="mcq-question">A Carbon customer is escalating a complaint and demands to speak with a manager. The agent says "There's no one available." This is:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Acceptable if the manager is genuinely unavailable</div><div class="mcq-option"><span class="opt-letter">B.</span> Poor complaint handling — the agent should acknowledge the request, explain options, and ensure a senior person follows up within a defined timeframe</div><div class="mcq-option"><span class="opt-letter">C.</span> A good de-escalation technique</div><div class="mcq-option"><span class="opt-letter">D.</span> Standard practice for fintech companies</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q66</div><div class="mcq-body"><span class="mcq-company-tag">Opay</span><p class="mcq-question">Which of the following is a KEY feature to look for when selecting a ticketing system for Opay's customer service team?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Integration with social media accounts only</div><div class="mcq-option"><span class="opt-letter">B.</span> Ability to assign, track, prioritise, and escalate tickets with full audit trail and SLA monitoring</div><div class="mcq-option"><span class="opt-letter">C.</span> Ability to generate marketing campaigns</div><div class="mcq-option"><span class="opt-letter">D.</span> Built-in payroll functionality</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q67</div><div class="mcq-body"><span class="mcq-company-tag">Bolt Nigeria</span><p class="mcq-question">A Bolt rider files a complaint about overcharging at 11 PM and expects a response by morning. The company's SLA promises 12-hour response. A ticketing system helps Bolt maintain this by:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Automatically refunding the customer</div><div class="mcq-option"><span class="opt-letter">B.</span> Logging the time of complaint, alerting agents approaching the SLA deadline, and escalating if unresolved within the window</div><div class="mcq-option"><span class="opt-letter">C.</span> Collecting customer payment information</div><div class="mcq-option"><span class="opt-letter">D.</span> Analysing customer satisfaction scores</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q68</div><div class="mcq-body"><span class="mcq-company-tag">Cappa & D'Alberto</span><p class="mcq-question">A construction client of Cappa & D'Alberto discovers structural cracks two months after building completion and complains to the company's customer service. Using problem-solving principles, what is the CORRECT sequence?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Deny liability → Escalate to legal → Close the ticket</div><div class="mcq-option"><span class="opt-letter">B.</span> Acknowledge concern → Investigate promptly → Communicate findings → Take corrective action → Follow up with the client</div><div class="mcq-option"><span class="opt-letter">C.</span> Ask client to send a written formal complaint and wait</div><div class="mcq-option"><span class="opt-letter">D.</span> Offer a discount on the next project</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q69</div><div class="mcq-body"><span class="mcq-company-tag">MTN Nigeria</span><p class="mcq-question">MTN Nigeria's customer service data shows 40% of escalations are caused by agents not following the standard resolution process. This points to a need for:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> A new CRM platform</div><div class="mcq-option"><span class="opt-letter">B.</span> Refresher training on complaint handling protocols and tighter quality monitoring</div><div class="mcq-option"><span class="opt-letter">C.</span> More CSAT surveys</div><div class="mcq-option"><span class="opt-letter">D.</span> Reducing agent headcount</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q70</div><div class="mcq-body"><span class="mcq-company-tag">Leadway Assurance</span><p class="mcq-question">A Leadway insurance claimant has been waiting 45 days for a claim settlement that should have taken 21 days. They are ready to escalate to the National Insurance Commission (NAICOM). The customer service team should:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Tell the client they are welcome to escalate</div><div class="mcq-option"><span class="opt-letter">B.</span> Urgently investigate, provide a detailed status update, give a revised timeline, and assign a senior case manager to personally oversee resolution</div><div class="mcq-option"><span class="opt-letter">C.</span> Ask the client to wait an additional 14 days</div><div class="mcq-option"><span class="opt-letter">D.</span> Offer a small gift voucher and close the ticket</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q71</div><div class="mcq-body"><span class="mcq-company-tag">PalmPay</span><p class="mcq-question">PalmPay's CRM system automatically tags a user as "high-risk for churn" after 14 days of inactivity and no transactions. This is an example of CRM being used for:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Fraud detection only</div><div class="mcq-option"><span class="opt-letter">B.</span> Proactive customer retention — identifying at-risk users for early intervention</div><div class="mcq-option"><span class="opt-letter">C.</span> NPS scoring</div><div class="mcq-option"><span class="opt-letter">D.</span> Internal staff management</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q72</div><div class="mcq-body"><span class="mcq-company-tag">Access Bank</span><p class="mcq-question">An Access Bank agent successfully resolves a customer's account dispute after a 45-minute call. At the end, the customer says, "Thank you, you were very helpful today!" This is an opportunity to:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Immediately close the call and log the ticket</div><div class="mcq-option"><span class="opt-letter">B.</span> Thank the customer, confirm all actions taken, invite them to call back if needed, and potentially ask for feedback — turning the resolution into a loyalty moment</div><div class="mcq-option"><span class="opt-letter">C.</span> Upsell a new banking product</div><div class="mcq-option"><span class="opt-letter">D.</span> Transfer them to the CSAT survey line only</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q73</div><div class="mcq-body"><span class="mcq-company-tag">UACN</span><p class="mcq-question">UACN receives a complaint from a major retail client about consistently late deliveries. Instead of offering excuses, the sales manager meets the client, acknowledges the failure, redesigns the delivery process, and implements tracking updates. This is an example of:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Using a complaint as a relationship-deepening and process-improvement opportunity</div><div class="mcq-option"><span class="opt-letter">B.</span> De-escalation technique only</div><div class="mcq-option"><span class="opt-letter">C.</span> CRM system configuration</div><div class="mcq-option"><span class="opt-letter">D.</span> NPS measurement</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q74</div><div class="mcq-body"><span class="mcq-company-tag">Shoprite Nigeria</span><p class="mcq-question">A Shoprite cashier gives a customer incorrect change. The customer raises this at the customer service desk. The CS agent's BEST response is:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> "You should have counted your change at the till."</div><div class="mcq-option"><span class="opt-letter">B.</span> Apologise sincerely, verify the transaction, correct the error immediately, and thank the customer for bringing it to the company's attention</div><div class="mcq-option"><span class="opt-letter">C.</span> Ask the customer to come back tomorrow with their receipt</div><div class="mcq-option"><span class="opt-letter">D.</span> Offer the customer a loyalty card instead of the cash difference</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q75</div><div class="mcq-body"><span class="mcq-company-tag">Uber Nigeria</span><p class="mcq-question">Uber Nigeria uses an in-app ticketing system where customers rate their ride, report issues, and track resolution status. This system benefits the customer primarily by:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Reducing the need for human agents entirely</div><div class="mcq-option"><span class="opt-letter">B.</span> Providing transparency into the complaint status and reducing effort needed to follow up</div><div class="mcq-option"><span class="opt-letter">C.</span> Automatically refunding the customer for every complaint</div><div class="mcq-option"><span class="opt-letter">D.</span> Sending CSAT surveys to all drivers</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q76</div><div class="mcq-body"><span class="mcq-company-tag">DHL Nigeria</span><p class="mcq-question">DHL Nigeria's CS team receives 200 new complaints on a Monday morning. Without a ticketing system, what is the MOST likely outcome?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> All complaints will be resolved by end of day</div><div class="mcq-option"><span class="opt-letter">B.</span> Complaints will be lost, duplicated, or forgotten — leading to unresolved issues and customer frustration</div><div class="mcq-option"><span class="opt-letter">C.</span> Agents will become more productive under pressure</div><div class="mcq-option"><span class="opt-letter">D.</span> The CSAT score will improve due to high complaint volume awareness</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q77</div><div class="mcq-body"><span class="mcq-company-tag">Farmcrowdy</span><p class="mcq-question">A Farmcrowdy investor is angry because their expected harvest payout was delayed by 3 months due to flooding. The agent says, "I totally understand your frustration — losing months of expected income is genuinely stressful, and we take full responsibility for communicating this better." This statement demonstrates:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> A legal admission of liability that should be avoided</div><div class="mcq-option"><span class="opt-letter">B.</span> Genuine empathy and accountability — a powerful de-escalation technique that validates the customer's reality</div><div class="mcq-option"><span class="opt-letter">C.</span> A scripted CRM response</div><div class="mcq-option"><span class="opt-letter">D.</span> Professional written communication</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q78</div><div class="mcq-body"><span class="mcq-company-tag">Sabi</span><p class="mcq-question">Sabi's B2B platform receives a complaint from a trader who was charged incorrectly three times in one month. The agent resolves the current charge but does not investigate why it keeps recurring. This is a failure of:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Empathy</div><div class="mcq-option"><span class="opt-letter">B.</span> Root cause problem-solving — resolving symptoms without addressing the underlying cause means the problem will reoccur</div><div class="mcq-option"><span class="opt-letter">C.</span> CRM logging</div><div class="mcq-option"><span class="opt-letter">D.</span> Communication skills</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q79</div><div class="mcq-body"><span class="mcq-company-tag">FCMB</span><p class="mcq-question">FCMB's complaint data shows that 60% of complaints are about a single product — mobile banking transfers. Rather than handle each complaint individually, the smartest response for the CS leadership is:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Hire more agents to handle the volume</div><div class="mcq-option"><span class="opt-letter">B.</span> Use complaint pattern analysis to escalate a root cause fix to the product and tech teams</div><div class="mcq-option"><span class="opt-letter">C.</span> Run a CSAT survey to confirm the issue</div><div class="mcq-option"><span class="opt-letter">D.</span> Remove the mobile banking transfer feature temporarily</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q80</div><div class="mcq-body"><span class="mcq-company-tag">Adron Homes</span><p class="mcq-question">An Adron Homes prospect visits the office after seeing an online advert that promised payment plans. The CS rep says "That offer expired." Without acknowledging the customer's journey or offering alternatives, the customer leaves disappointed. What challenge-handling principle was missed?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Turning the challenge into an opportunity — by empathising, explaining, and offering current alternatives that could still meet the customer's needs</div><div class="mcq-option"><span class="opt-letter">B.</span> CRM data entry</div><div class="mcq-option"><span class="opt-letter">C.</span> Internal customer service</div><div class="mcq-option"><span class="opt-letter">D.</span> CSAT tracking</div></div></div></div></div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ MCQ MODULE 5 ═══════════════ -->
+  <div id="mcq5" class="section-panel">
+    <div class="section-header">
+      <div class="section-eyebrow">Part B · Multiple Choice</div>
+      <h2 class="section-title">Module 5: Metrics, Feedback, and Professional Growth</h2>
+      <p class="section-desc">20 questions on CSAT, NPS, CES, feedback systems, stress management, and career development. Select the single best answer.</p>
+    </div>
+
+    <div class="mcq-module">
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q81</div><div class="mcq-body"><span class="mcq-company-tag">Opay</span><p class="mcq-question">Opay sends a post-transaction survey asking: "How satisfied were you with the support you received today? (1–5 stars)." This metric is known as:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Net Promoter Score (NPS)</div><div class="mcq-option"><span class="opt-letter">B.</span> Customer Satisfaction Score (CSAT)</div><div class="mcq-option"><span class="opt-letter">C.</span> Customer Effort Score (CES)</div><div class="mcq-option"><span class="opt-letter">D.</span> Employee Net Promoter Score (eNPS)</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q82</div><div class="mcq-body"><span class="mcq-company-tag">GTBank</span><p class="mcq-question">GTBank asks customers annually: "On a scale of 0–10, how likely are you to recommend GTBank to a friend or colleague?" This is used to calculate:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> CSAT</div><div class="mcq-option"><span class="opt-letter">B.</span> CES</div><div class="mcq-option"><span class="opt-letter">C.</span> NPS (Net Promoter Score)</div><div class="mcq-option"><span class="opt-letter">D.</span> Customer Churn Rate</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q83</div><div class="mcq-body"><span class="mcq-company-tag">Flutterwave</span><p class="mcq-question">After a support interaction, Flutterwave asks: "How easy was it for you to get the help you needed today?" This is measuring:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> NPS</div><div class="mcq-option"><span class="opt-letter">B.</span> CSAT</div><div class="mcq-option"><span class="opt-letter">C.</span> CES — Customer Effort Score</div><div class="mcq-option"><span class="opt-letter">D.</span> Brand loyalty index</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q84</div><div class="mcq-body"><span class="mcq-company-tag">Zenith Bank</span><p class="mcq-question">Zenith Bank's NPS is 42. This means:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> 42% of customers gave a perfect rating</div><div class="mcq-option"><span class="opt-letter">B.</span> The difference between the percentage of Promoters and Detractors is 42 — indicating a net positive advocacy position</div><div class="mcq-option"><span class="opt-letter">C.</span> 42 customers would recommend the bank</div><div class="mcq-option"><span class="opt-letter">D.</span> 42% of customers are satisfied</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q85</div><div class="mcq-body"><span class="mcq-company-tag">Paystack</span><p class="mcq-question">Paystack's CSAT scores are consistently high (4.5/5) but their NPS is low (12). What does this discrepancy most likely indicate?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> The surveys are being administered incorrectly</div><div class="mcq-option"><span class="opt-letter">B.</span> Customers are satisfied with individual interactions but are not loyal enough or confident enough to recommend Paystack to others — signalling a deeper loyalty or trust gap</div><div class="mcq-option"><span class="opt-letter">C.</span> CSAT is a more reliable metric than NPS</div><div class="mcq-option"><span class="opt-letter">D.</span> Paystack should stop measuring CSAT</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q86</div><div class="mcq-body"><span class="mcq-company-tag">Cowrywise</span><p class="mcq-question">Cowrywise collects feedback after every customer service interaction. However, only 3% of users respond. To increase response rates, the BEST approach is:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Make the survey mandatory for all users</div><div class="mcq-option"><span class="opt-letter">B.</span> Shorten the survey to 1–2 questions, make it accessible directly in-app, and send it immediately after resolution while the experience is fresh</div><div class="mcq-option"><span class="opt-letter">C.</span> Offer cash rewards for all respondents</div><div class="mcq-option"><span class="opt-letter">D.</span> Stop collecting feedback and rely on complaint data only</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q87</div><div class="mcq-body"><span class="mcq-company-tag">Dangote Group</span><p class="mcq-question">A Dangote Group customer relations manager receives feedback from distributors that their account executives are unresponsive. She shares this with the team but takes no further action. What step in the feedback cycle is missing?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Collecting the feedback</div><div class="mcq-option"><span class="opt-letter">B.</span> Acting on the feedback — identifying root causes, setting improvement targets, and following up to confirm change</div><div class="mcq-option"><span class="opt-letter">C.</span> Analysing the feedback</div><div class="mcq-option"><span class="opt-letter">D.</span> Sharing the feedback with the team</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q88</div><div class="mcq-body"><span class="mcq-company-tag">Carbon (PayLater)</span><p class="mcq-question">Carbon's CES for their loan application process is 5.8 out of 7 (higher = more effort required). This should trigger the team to:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Celebrate a strong score</div><div class="mcq-option"><span class="opt-letter">B.</span> Urgently investigate and reduce friction in the loan application process — high CES means customers are working too hard, risking drop-off and dissatisfaction</div><div class="mcq-option"><span class="opt-letter">C.</span> Collect more feedback before making any decisions</div><div class="mcq-option"><span class="opt-letter">D.</span> Improve the NPS score first</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q89</div><div class="mcq-body"><span class="mcq-company-tag">Andela</span><p class="mcq-question">An Andela talent success manager is experiencing chronic stress — they've become irritable with clients and are making errors in communications. Which stress management strategy would MOST directly help their professional performance?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Taking on more clients to stay busy</div><div class="mcq-option"><span class="opt-letter">B.</span> Recognising stress triggers, setting clear work-life boundaries, using structured daily planning, and seeking peer or managerial support</div><div class="mcq-option"><span class="opt-letter">C.</span> Resigning immediately</div><div class="mcq-option"><span class="opt-letter">D.</span> Ignoring the issue until performance reviews</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q90</div><div class="mcq-body"><span class="mcq-company-tag">MTN Nigeria</span><p class="mcq-question">MTN Nigeria's CS team tracks First Call Resolution (FCR) rate. If the FCR is 60%, this means:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> 60% of calls are answered within the first minute</div><div class="mcq-option"><span class="opt-letter">B.</span> 60% of customer issues are fully resolved during the first contact without the need for follow-up</div><div class="mcq-option"><span class="opt-letter">C.</span> 60% of customers are promoters</div><div class="mcq-option"><span class="opt-letter">D.</span> 60% of complaints are escalated</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q91</div><div class="mcq-body"><span class="mcq-company-tag">PiggyVest</span><p class="mcq-question">A PiggyVest customer support agent wants to develop a 12-month Personal Development Plan (PDP). Which of the following should be the FIRST step in creating an effective PDP?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Request a pay increase</div><div class="mcq-option"><span class="opt-letter">B.</span> Honestly assess current skill strengths and gaps against the competencies required for their target career growth</div><div class="mcq-option"><span class="opt-letter">C.</span> Sign up for every available training course</div><div class="mcq-option"><span class="opt-letter">D.</span> Shadow a colleague for one week</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q92</div><div class="mcq-body"><span class="mcq-company-tag">Konga</span><p class="mcq-question">Konga wants to measure how much effort customers exert to resolve issues on their platform. Which metric is MOST appropriate?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> NPS</div><div class="mcq-option"><span class="opt-letter">B.</span> CSAT</div><div class="mcq-option"><span class="opt-letter">C.</span> CES</div><div class="mcq-option"><span class="opt-letter">D.</span> Employee Satisfaction Score</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q93</div><div class="mcq-body"><span class="mcq-company-tag">Helium Health</span><p class="mcq-question">Helium Health wants to identify career growth paths for their customer success team. Which of the following represents a logical vertical career progression for a CS agent?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> CS Agent → Marketing Executive → Finance Officer</div><div class="mcq-option"><span class="opt-letter">B.</span> CS Agent → Senior CS Specialist → Team Lead → CS Manager → Head of Customer Experience</div><div class="mcq-option"><span class="opt-letter">C.</span> CS Agent → Developer → Product Manager</div><div class="mcq-option"><span class="opt-letter">D.</span> CS Agent → Sales Representative → HR Officer</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q94</div><div class="mcq-body"><span class="mcq-company-tag">IrokoTV</span><p class="mcq-question">IrokoTV's CSAT scores drop significantly every time there is a streaming buffering issue. This correlation tells the CS leadership that:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> CSAT is an unreliable metric</div><div class="mcq-option"><span class="opt-letter">B.</span> Technical performance directly impacts customer satisfaction, and CS and product teams must work together to address the issue at its source</div><div class="mcq-option"><span class="opt-letter">C.</span> Agents need more empathy training</div><div class="mcq-option"><span class="opt-letter">D.</span> NPS should replace CSAT as the primary metric</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q95</div><div class="mcq-body"><span class="mcq-company-tag">Sabi</span><p class="mcq-question">A Sabi CS team lead notices that her best agent has started making repeated errors, becoming withdrawn, and calling in sick frequently. The team lead should FIRST:</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Issue a formal warning immediately</div><div class="mcq-option"><span class="opt-letter">B.</span> Have a private, empathetic conversation to understand if there are personal, workload, or wellbeing issues affecting performance</div><div class="mcq-option"><span class="opt-letter">C.</span> Reassign all of the agent's accounts to other team members</div><div class="mcq-option"><span class="opt-letter">D.</span> Increase the agent's targets to re-motivate them</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q96</div><div class="mcq-body"><span class="mcq-company-tag">AXA Mansard</span><p class="mcq-question">AXA Mansard wants to understand the full customer journey, not just post-transaction sentiment. Which combination of metrics gives the most complete picture?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> CSAT only — it covers everything needed</div><div class="mcq-option"><span class="opt-letter">B.</span> CSAT (interaction satisfaction) + CES (ease of process) + NPS (overall loyalty and advocacy) measured at different touchpoints</div><div class="mcq-option"><span class="opt-letter">C.</span> NPS only — it is the gold standard</div><div class="mcq-option"><span class="opt-letter">D.</span> Employee satisfaction score only</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q97</div><div class="mcq-body"><span class="mcq-company-tag">BUA Group</span><p class="mcq-question">BUA Group wants to establish a feedback culture within its customer relations division. Which of the following actions would MOST embed this culture?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Sending quarterly feedback forms to customers</div><div class="mcq-option"><span class="opt-letter">B.</span> Making feedback collection a regular practice, sharing results transparently with the team, celebrating improvements, and visibly acting on findings in every review cycle</div><div class="mcq-option"><span class="opt-letter">C.</span> Hiring a dedicated survey manager</div><div class="mcq-option"><span class="opt-letter">D.</span> Implementing a new CRM system</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q98</div><div class="mcq-body"><span class="mcq-company-tag">Moove Africa</span><p class="mcq-question">A Moove Africa customer success officer handles 100+ driver-partner interactions daily with complex financial disputes. Which of the following is the MOST effective stress management technique for high-volume CS roles?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Handling all issues alone to show capability</div><div class="mcq-option"><span class="opt-letter">B.</span> Using structured breaks, building clear escalation paths, setting realistic daily targets, and debriefing difficult interactions with a team lead</div><div class="mcq-option"><span class="opt-letter">C.</span> Avoiding difficult driver-partners by reassigning their tickets</div><div class="mcq-option"><span class="opt-letter">D.</span> Requesting a role change to avoid high-volume interactions</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q99</div><div class="mcq-body"><span class="mcq-company-tag">Interswitch</span><p class="mcq-question">Interswitch's CS analytics shows that their NPS for enterprise clients is +65 but for SME clients is -10. What does this data tell leadership?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> The overall company NPS is healthy and no action is needed</div><div class="mcq-option"><span class="opt-letter">B.</span> Enterprise clients are highly loyal while SME clients are significantly dissatisfied — requiring urgent investigation and targeted improvements in SME service delivery</div><div class="mcq-option"><span class="opt-letter">C.</span> CSAT surveys should be introduced for SME clients</div><div class="mcq-option"><span class="opt-letter">D.</span> The NPS methodology is being applied incorrectly</div></div></div></div></div>
+
+      <div class="mcq-card"><div class="mcq-head"><div class="mcq-num">Q100</div><div class="mcq-body"><span class="mcq-company-tag">Cowrywise</span><p class="mcq-question">A Cowrywise CS agent has been in role for 18 months and wants to grow into a Customer Experience Analyst role. Based on the professional growth principles in Module 5, what is the MOST strategic next step?</p><div class="mcq-options"><div class="mcq-option"><span class="opt-letter">A.</span> Wait for the company to promote them automatically based on tenure</div><div class="mcq-option"><span class="opt-letter">B.</span> Build a Personal Development Plan targeting data analysis skills, customer metrics knowledge, and CX strategy — then discuss it with their manager to align with a growth pathway and timeline</div><div class="mcq-option"><span class="opt-letter">C.</span> Apply for the analyst role immediately without additional preparation</div><div class="mcq-option"><span class="opt-letter">D.</span> Find a similar role at a competitor company</div></div></div></div></div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="exam-footer">
+  <p><strong>VAA Global · CSRM Final Examination</strong> · Customer Service & Relationship Management Programme</p>
+  <p style="margin-top:6px;">© 2024 VAA Global. All rights reserved. This examination is for programme use only.</p>
+</footer>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-nav" id="mobileNav">
+  <button class="tab-btn active" onclick="showTab('overview', this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('essay', this)">Essay</button>
+  <button class="tab-btn" onclick="showTab('mcq1', this)">Mod 1</button>
+  <button class="tab-btn" onclick="showTab('mcq2', this)">Mod 2</button>
+  <button class="tab-btn" onclick="showTab('mcq3', this)">Mod 3</button>
+  <button class="tab-btn" onclick="showTab('mcq4', this)">Mod 4</button>
+  <button class="tab-btn" onclick="showTab('mcq5', this)">Mod 5</button>
+</nav>
+
+<script>
+  function showTab(id, btn) {
+    // Hide all panels
+    document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+    // Deactivate ALL tab buttons (desktop + mobile)
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    // Show selected panel
+    document.getElementById(id).classList.add('active');
+    // Activate the matching buttons in BOTH navs
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      if (b.getAttribute('onclick') === btn.getAttribute('onclick')) {
+        b.classList.add('active');
+      }
+    });
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
